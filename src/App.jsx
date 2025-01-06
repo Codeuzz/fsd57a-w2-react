@@ -1,42 +1,24 @@
 import Hello from './Hello'
 import './App.css'
-import Avatar from './Avatar'
-import { useState } from 'react'
-import axios from 'axios'
-import { useEffect } from 'react'
+import { Routes, Route } from 'react-router-dom'
+import Navbar from './components/NavBar'
+import Users from './components/Users'
+import User from './components/User'
 
 function App() {
- const [users, setUsers] = useState(null)
- const [loading, setLoading] = useState(true)
- const URL = import.meta.env.VITE_URL
- console.log(URL)
 
- const fetchData = async () => {
-  try {
-    const response = await axios.get(URL)
-    setUsers(response.data)
-  } catch (error) {
-    console.log(error)
-  } finally {
-    setLoading(false)
-  }
- }
-
- useEffect(() => {
-  fetchData()
- }, [])
-
- if (loading) {
-  return <p>Loading....</p>
-}
 
   return (
-    <>
-      <Hello />
-      {users && !loading && users.map(user => (
-        <Avatar key={user.id} {...user} />
-      ))}
-    </>
+    <div>
+      <Navbar />
+      <Routes>
+        <Route path='/' element={<Hello />}></Route>
+        <Route path='/hello' element={<Hello />}></Route>
+        <Route path='/users' element={<Users />} />
+        <Route path='/user/:id' element={<User />} />
+
+      </Routes>
+    </div>
   )
 }
 

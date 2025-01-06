@@ -1,8 +1,10 @@
-const Avatar = ({name, email}) => {
+import { Link } from "react-router-dom"
+
+const Avatar = ({name, email, id}) => {
 
     return (
         <li>
-            <p>{name} </p> 
+            <Link to={`/user/${id}`}>{name} </Link> 
             <p>Email: {email}</p>
         </li>
     )
