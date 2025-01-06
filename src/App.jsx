@@ -6,12 +6,12 @@ function App() {
 
   const users = [
     {
-      image: "hihi.jpg",
+      image: "src/assets/free-nature-images (1).jpg",
       firstName: "jean",
       lastName: "jacques"
     },
     {
-      image: "lala.jpg",
+      image: "src/assets/MainAfter.jpg",
       firstName: "henry",
       lastName: "pierre"
     }
