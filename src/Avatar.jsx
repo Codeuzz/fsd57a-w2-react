@@ -1,9 +1,9 @@
-const Avatar = ({image, firstName, lastName}) => {
+const Avatar = ({name, email}) => {
 
     return (
         <li>
-            <img src={image} alt={`${firstName} ${lastName}`} />
-            <p>{firstName} {lastName}</p>
+            <p>{name} </p> 
+            <p>Email: {email}</p>
         </li>
     )
 }

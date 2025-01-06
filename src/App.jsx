@@ -1,27 +1,31 @@
 import Hello from './Hello'
 import './App.css'
 import Avatar from './Avatar'
+import { useState } from 'react'
+import axios from 'axios'
+import { useEffect } from 'react'
 
 function App() {
+ const [users, setUsers] = useState(null)
 
-  const users = [
-    {
-      image: "src/assets/free-nature-images (1).jpg",
-      firstName: "jean",
-      lastName: "jacques"
-    },
-    {
-      image: "src/assets/MainAfter.jpg",
-      firstName: "henry",
-      lastName: "pierre"
-    }
-  ]
+ const fetchData = async () => {
+  try {
+    const response = await axios.get('https://jsonplaceholder.typicode.com/users')
+    setUsers(response.data)
+  } catch (error) {
+    console.log(error)
+  }
+ }
+
+ useEffect(() => {
+  fetchData()
+ }, [])
 
   return (
     <>
       <Hello />
-      {users.map(user => (
-        <Avatar key={user.firstName} {...user} />
+      {users && users.map(user => (
+        <Avatar key={user.id} {...user} />
       ))}
     </>
   )
