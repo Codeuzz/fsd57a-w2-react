@@ -2,8 +2,7 @@ import { Link } from 'react-router-dom';
 
 function Navbar() {
   return (
-    <nav className="bg-gray-100 p-4 shadow-md">
-      <div className="container mx-auto flex justify-around">
+    <nav className="w-1/2 flex justify-around gap-3 bg-slate-300">
         <Link to="/" className="text-gray-700 hover:text-blue-500 font-medium">
           Home
         </Link>
@@ -13,7 +12,9 @@ function Navbar() {
         <Link to="/hello" className="text-gray-700 hover:text-blue-500 font-medium">
           Hello
         </Link>
-      </div>
+        <Link to="/weather" className="text-gray-700 hover:text-blue-500 font-medium">
+          Weather
+        </Link>
     </nav>
   );
 }
