@@ -15,6 +15,9 @@ function Navbar() {
         <Link to="/weather" className="text-gray-700 hover:text-blue-500 font-medium">
           Weather
         </Link>
+        <Link to="/musics" className="text-gray-700 hover:text-blue-500 font-medium">
+          Musics
+        </Link>
     </nav>
   );
 }
