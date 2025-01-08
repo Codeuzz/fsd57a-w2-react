@@ -30,13 +30,31 @@ const Musics = () => {
         }
     }
 
+    const deleteMusic = async (musicId) => {
+        try {
+            const response = await axios.delete(`${musicUrl}/${musicId}`)
+            setMusics(prevMusics => prevMusics.filter(music => music.id !== musicId))
+        } catch(error) {
+            console.error(error, "problem deleting the music")
+        }
+    }
+
     useEffect(() => {
         fetchMusics()
     }, [])
     return (
         <div className="flex flex-col gap-7 mt-4 border-white rounded-xl border-2 p-5">
             <div className="flex flex-col">
-                {musics && musics.map(music => <li key={music.id}>{music.name}</li>)}
+                {musics && musics.map(music => (
+                    <div key={music.id} className="flex justify-between gap-2">
+                        <li>{music.name}</li>
+                        <button 
+                        className="bg-red-600 px-1 rounded-xl"
+                        onClick={() => deleteMusic(music.id)}
+                        
+                        >Delete</button>
+                    </div>
+                ))}
             </div>
             <form 
                 action="" 
