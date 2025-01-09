@@ -107,10 +107,13 @@ const Posts = () => {
                     <h1 className="text-xl font-bold uppercase">{post.body}</h1>
                     <p className="italic text-purple-600">{post.date}</p>
                     {post.userId && <p>{post.userId.first_name}</p> }
-                    <button onClick={(e) => {
-                        e.preventDefault()
-                        deletePost(post._id)
-                    }}>Delete</button>
+                    <button 
+                        onClick={(e) => {
+                            e.preventDefault()
+                            deletePost(post._id)
+                        }}
+                        className="bg-red-600 px-2 py-1 rounded-xl"
+                    >Delete</button>
                 </div>
             ))}
         </div>
