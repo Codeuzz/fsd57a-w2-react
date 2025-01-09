@@ -1,12 +1,14 @@
 import Hello from './Hello'
 import './App.css'
 import { Routes, Route } from 'react-router-dom'
- import Weather from './components/Weather'
- import Navbar from './components/NavBar'
-import Musics from './components/Musics'
+  import Register from './components/Register'
+  import Weather from './components/Weather'
+  import Navbar from './components/NavBar'
+ import Musics from './components/Musics'
+ import Posts from './components/Posts'
 import Users from './components/Users'
+
 import User from './components/User'
-import Posts from './components/Posts'
 
 function App() {
 
@@ -22,6 +24,11 @@ function App() {
         <Route path='/weather' element={<Weather />} />
         <Route path='/musics' element={<Musics />} />
         <Route path='/posts' element={<Posts />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='/login' element={<Register />} />
+
+        <Route path='*' element={<h1>404 page not found</h1>} />
+
 
 
       </Routes>

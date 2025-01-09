@@ -21,6 +21,12 @@ function Navbar() {
         <Link to="/posts" className="text-gray-700 hover:text-blue-500 font-medium">
           Posts
         </Link>
+        <Link to="/register" className="text-gray-700 hover:text-blue-500 font-medium">
+          Register
+        </Link>
+        <Link to="/login" className="text-gray-700 hover:text-blue-500 font-medium">
+          Login
+        </Link>
     </nav>
   );
 }

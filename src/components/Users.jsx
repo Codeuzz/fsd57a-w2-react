@@ -1,5 +1,5 @@
 import Avatar from "../Avatar"
-import { useAppContext } from "../AppContext"
+import { useAppContext } from "../context/AppContext"
 
 function Users() {
     const {users, error, loading} = useAppContext()
