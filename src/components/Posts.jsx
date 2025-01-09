@@ -44,6 +44,15 @@ const Posts = () => {
         }
       };
 
+      const deletePost = async (postId) => {
+        try {
+            const response = await axios.delete(`${postsUrl}/${postId}`)
+            setPosts(prevPost => prevPost.filter(post => post._id !== postId))
+        } catch(error) {
+            console.error(error, "problem deleting the music")
+        }
+    }
+
 
     return (
         <>
@@ -98,6 +107,10 @@ const Posts = () => {
                     <h1 className="text-xl font-bold uppercase">{post.body}</h1>
                     <p className="italic text-purple-600">{post.date}</p>
                     {post.userId && <p>{post.userId.first_name}</p> }
+                    <button onClick={(e) => {
+                        e.preventDefault()
+                        deletePost(post._id)
+                    }}>Delete</button>
                 </div>
             ))}
         </div>
