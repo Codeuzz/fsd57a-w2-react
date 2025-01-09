@@ -6,6 +6,7 @@ import { Routes, Route } from 'react-router-dom'
 import Musics from './components/Musics'
 import Users from './components/Users'
 import User from './components/User'
+import Posts from './components/Posts'
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
         <Route path='/user/:id' element={<User />} />
         <Route path='/weather' element={<Weather />} />
         <Route path='/musics' element={<Musics />} />
+        <Route path='/posts' element={<Posts />} />
 
 
       </Routes>
