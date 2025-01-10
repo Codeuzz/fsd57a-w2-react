@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -6,6 +6,15 @@ export const AuthContext = createContext()
 
 export const AuthProvider = ({children}) => {
     let navigate = useNavigate()
+    const [isAuthenticated, setIsAuthenticated] = useState(false)
+
+    useEffect(() => {
+        let token = localStorage.getItem('token')
+        if(token){
+            setIsAuthenticated(true)
+        }
+    }, []) 
+
 
     const registerUser = async (user) => {
         try{
@@ -13,7 +22,7 @@ export const AuthProvider = ({children}) => {
             console.log(response)
             if(response.status === 200){
                 alert(response.data.message)
-                navigate('/')
+                return navigate("/login")
             }
             alert(response.data.message)
         }
@@ -22,8 +31,25 @@ export const AuthProvider = ({children}) => {
         }
     }
 
+    const loginUser = async (user) => {
+        try {
+            const response = await axios.post('http://localhost:8000/api/login', user)
+            console.log(response)
+            if (response.status === 200) {
+                localStorage.setItem('token', response.data.token)
+                setIsAuthenticated(true)
+                alert(response.data.message)
+                return navigate('/')
+            }
+        }
+        catch (err) {
+            console.log(err)
+            alert("we could not log you in")
+        }
+    }
+
     return (
-        <AuthContext.Provider value={{registerUser}}>
+        <AuthContext.Provider value={{registerUser, loginUser, isAuthenticated}}>
             {children}
         </AuthContext.Provider>
     )
