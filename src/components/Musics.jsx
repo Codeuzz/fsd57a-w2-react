@@ -9,8 +9,9 @@ const Musics = () => {
 
         try {
             const response = await axios.get(musicUrl)
+            
+            console.log(response.data)
             setMusics(response.data)
-            console.log(musics)
         } catch(err) {
             console.error(err, 'couldnt fetch muics')
         }    

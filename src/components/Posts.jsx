@@ -5,11 +5,16 @@ const Posts = () => {
     const [posts, setPosts] = useState([])
     const postsUrl = 'http://localhost:8000/api/posts'
     const fetchPosts = async () => {
+        const token = localStorage.getItem('token')
 
         try {
-            const response = await axios.get(postsUrl)
+            const response = await axios.get(postsUrl, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            console.log(response.data)
             setPosts(response.data)
-            console.log(posts)
         } catch(err) {
             console.error(err, 'couldnt fetch muics')
         }    
@@ -33,11 +38,12 @@ const Posts = () => {
       };
     
       const handleSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault()
         try {
           const response = await axios.post("http://localhost:8000/api/posts", formData);
           alert("Post créé avec succès !");
-          console.log(response.data);
+          console.log(response.data)
+          fetchPosts();
         } catch (error) {
           console.error("Erreur lors de la création du post :", error);
           alert("Une erreur est survenue. Vérifiez les données et réessayez.");
@@ -58,7 +64,7 @@ const Posts = () => {
         <>
             <form onSubmit={handleSubmit} className="flex flex-col gap-2"> 
                 <div>
-                    <label htmlFor="title" className="block font-bold">Titre :</label>
+                    <label htmlFor="title" className="block font-bold">Title :</label>
                     <input
                     type="text"
                     id="title"
@@ -71,13 +77,13 @@ const Posts = () => {
                 </div>
 
                 <div>
-                    <label htmlFor="body" className="block font-bold">Contenu :</label>
+                    <label htmlFor="body" className="block font-bold">Content :</label>
                     <textarea
                     id="body"
                     name="body"
                     value={formData.body}
                     onChange={handleChange}
-                    className="border rounded p-2 w-full"
+                    className="border rounded p-2 w-full text-black"
                     required
                     />
                 </div>
@@ -96,7 +102,7 @@ const Posts = () => {
                 </div>
 
                 <button type="submit" className="bg-purple-600 text-white py-2 px-4 rounded hover:bg-purple-700">
-                    Ajouter le Post
+                    Post the post
                 </button>
 
                 

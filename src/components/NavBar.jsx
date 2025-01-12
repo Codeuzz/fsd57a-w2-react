@@ -3,7 +3,7 @@ import { AuthContext } from '../context/AuthContext';
 import { useContext } from 'react';
 
 function Navbar() {
-  const {isAuthenticated} = useContext(AuthContext)
+  const {isAuthenticated, logoutUser} = useContext(AuthContext)
 
 
   return (
@@ -37,7 +37,6 @@ function Navbar() {
                 </button>
               </div>
               <div
-                transition
                 className="absolute right-0 top-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5"
               >
               {!isAuthenticated ? (
@@ -71,12 +70,12 @@ function Navbar() {
                   </Link>
                 </div>
                 <div>
-                  <Link
-                    to="/"
-                    className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:outline-none"
+                  <button
+                    onClick={logoutUser}
+                    className="block px-4 py-2 text-sm text-gray-700 font-semibold data-[focus]:bg-gray-100 data-[focus]:outline-none hover:text-blue-500"
                   >
                     Logout
-                  </Link>
+                  </button>
                 </div>
                 </>
                 )

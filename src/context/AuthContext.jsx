@@ -12,6 +12,8 @@ export const AuthProvider = ({children}) => {
         let token = localStorage.getItem('token')
         if(token){
             setIsAuthenticated(true)
+        } else {
+            setIsAuthenticated(false)
         }
     }, []) 
 
@@ -48,8 +50,14 @@ export const AuthProvider = ({children}) => {
         }
     }
 
+    const logoutUser = async (user) => {
+       localStorage.removeItem('token')
+       setIsAuthenticated(false)
+       navigate('/login');
+    }
+
     return (
-        <AuthContext.Provider value={{registerUser, loginUser, isAuthenticated}}>
+        <AuthContext.Provider value={{registerUser, loginUser, isAuthenticated, logoutUser}}>
             {children}
         </AuthContext.Provider>
     )
